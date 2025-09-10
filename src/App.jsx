@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+
 import { createClient } from "@supabase/supabase-js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Componentes/Footer";
-import Principal from "./Pages/Principal/Principal";
+import Main from "./Pages/Principal/Principal";
 import './App.css'
 
 function App() {
@@ -17,11 +17,10 @@ function App() {
 
         {/* Cabeza de la interfaz */}
         <header>
-          <nav></nav>
         </header>
 
         {/* Principal Interfaz */}
-        <main></main>
+        <Main></Main>
 
         {/*Pie de pagina estatico */}
         <Footer></Footer>
