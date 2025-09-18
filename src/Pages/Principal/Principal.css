@@ -81,14 +81,10 @@ video{
     width: 90%;
 }
 
+.card{
+    border: 1px solid white;
+}
+
 .margen{
-    border: 1px solid green;
-}
-
-.margen2{
-    border: 1px solid blue;
-}
-
-.margen3{
-    border: 1px solid red;
+    height: 20vw;
 }

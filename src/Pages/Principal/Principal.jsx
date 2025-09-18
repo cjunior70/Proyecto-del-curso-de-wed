@@ -6,6 +6,7 @@ import Conexion from '../../Componentes/Conexion'
 export default function Principal() {
 
   const [Galeria, setGaleria] = useState([]);
+  const [Filtro, setFiltro] = useState(false);
 
   useEffect(()=> {
     async function getGaleria() {
@@ -136,10 +137,10 @@ export default function Principal() {
         </section>
 
         <section>
-            <section className="d-flex">
+            <section className="d-flex justify-content-around w-100 align-self-center ">
                 {/* Opcion princial con dos unicas opciones */}
-                <section>
-                  <li className="nav-item dropdown">
+                <section >
+                  <li className="nav-item dropdown border p-2 rounded-2" style={{ listStyle: "none", padding: 0, margin: 0  }}>
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Popular
                     </a>
@@ -151,8 +152,8 @@ export default function Principal() {
                 </section>
 
                 {/*Categorias  */}
-                <section>
-                  <ul>
+                <section className="w-50  align-self-center justify-content-around " >
+                  <ul  style={{ listStyle: "none", padding: 0, margin: 0 , gap: "20px", }} className="d-flex justify-content-around">
                     <li><a target="_blank" href="https://dribbble.com/shots/popular/">Discorver</a></li>
                     <li><a target="_blank" href="https://dribbble.com/shots/popular/animation">Animation</a></li>
                     <li><a target="_blank" href="https://dribbble.com/shots/popular/branding">Branding</a></li>
@@ -165,23 +166,50 @@ export default function Principal() {
                   </ul>
                 </section>
 
-                <button>
-                  <img src="https://images.icon-icons.com/3403/PNG/512/each_new_category_icon_215653.png" alt="" placeholder="" />
-                  <p>Filters</p>
+                <button onClick={()=>setFiltro(!Filtro)} style={{width:130,height: 43}} className="d-flex justify-content-evenly align-items-center align-self-center rounded-4 bg-light border-white">
+                  <img style={{ width: 40 , padding: 0, margin: 0 }} src="https://images.icon-icons.com/3403/PNG/512/each_new_category_icon_215653.png" alt="" placeholder="" />
+                  <p style={{height:20}}>Filters</p>
                 </button>
 
             </section>
 
           {/* Cunado el boton filter se el de click acvitar o mostrar esto */}
           <section>
+              {
+                Filtro == 1 && (
+                    <form action="" className="d-flex justify-content-around">
+                    <section>
+                      <label htmlFor="">Tags</label>
+                      <input type="text" />
+                    </section>
 
+                    <section>
+                      <label htmlFor="">Color</label>
+                      <input type="color" />
+                    </section>
+
+                    <li className="nav-item dropdown border p-2 rounded-2" style={{ listStyle: "none", padding: 0, margin: 0  }}>
+                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Timeframe
+                      </a>
+                      <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="" target="_blank" >Now</a></li>
+                        <li><a className="dropdown-item" href="" target="_blank">This Past week</a></li>
+                        <li><a className="dropdown-item" href="" target="_blank">This Past Month</a></li>
+                        <li><a className="dropdown-item" href="" target="_blank">This Past Year</a></li>
+                        <li><a className="dropdown-item" href="" target="_blank">All Time</a></li>
+                      </ul>
+                    </li>
+                </form>
+                )
+              }
           </section>
 
         </section>
 
         {/* Categorias */}
-        <section className="d-flex margen3 justify-content-center flex-wrap flex-column align-items-center w-100">
-          <section className="p-3 margen2 d-flex flex-wrap justify-content-start w-100">
+        <section className="d-flex justify-content-center flex-wrap flex-column align-items-center w-100">
+          <section className="p-3 d-flex flex-wrap justify-content-start w-100">
             {Galeria.map((item) => (
               <div className="col-3 p-2 margen" key={item.id}>
                 {console.log(item.id)}
