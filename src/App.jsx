@@ -1,12 +1,12 @@
 
-import { createClient } from "@supabase/supabase-js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Componentes/Footer";
-import Main from "./Pages/Principal/Principal";
+import Principal from "./Pages/Principal/Principal";
 import './App.css'
 
+
 function App() {
-  return (
+    return (
     <>
       {/* Etiqueta para usar las rutas con vite */}
       <Router>
@@ -20,7 +20,7 @@ function App() {
         </header>
 
         {/* Principal Interfaz */}
-        <Main></Main>
+        <Principal></Principal>
 
         {/*Pie de pagina estatico */}
         <Footer></Footer>
@@ -30,3 +30,5 @@ function App() {
 }
 
 export default App;
+
+ 

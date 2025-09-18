@@ -1,12 +1,31 @@
 import "./Principal.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cartas from "../../Componentes/Cartas";
+import Conexion from '../../Componentes/Conexion'
 
 export default function Principal() {
 
+  const [Galeria, setGaleria] = useState([]);
+
+  useEffect(()=> {
+    async function getGaleria() {
+      const { data, error } = await Conexion.from("Galeria").select("*");
+      if (error) console.error("❌ Error:", error.message);
+      else{
+         console.log("✅ Datos de Usuarios:", data);
+         setGaleria(data);
+      }
+    } 
+
+    getGaleria();
+  }, [] )
+
+  //Estado de las opciones para poder saber el estado de las opciones
   const [opciones,Setopciones] = useState(1);
 
   return (
     <>
+
       <main>
         {/* Primera parte */}
         <section className="row d-flex align-items-center justify-content-around p-4">
@@ -49,7 +68,7 @@ export default function Principal() {
                 <section className="m-2 p-2">
                     <form className="d-flex barra_de_busqueda" role="search">
                         <input
-                            class="form-control me-2 barra"
+                            className="form-control me-2 barra"
                             type="search"
                             placeholder={
                               opciones == 1 ? "what type od desing are you interested in ¿?"
@@ -116,8 +135,61 @@ export default function Principal() {
           </section>
         </section>
 
+        <section>
+            <section className="d-flex">
+                {/* Opcion princial con dos unicas opciones */}
+                <section>
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Popular
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="https://dribbble.com/shots/popular" target="_blank" >Popular</a></li>
+                      <li><a className="dropdown-item" href="https://dribbble.com/shots/recent" target="_blank">New & Noteworthy</a></li>
+                    </ul>
+                  </li>
+                </section>
+
+                {/*Categorias  */}
+                <section>
+                  <ul>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/">Discorver</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/animation">Animation</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/branding">Branding</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/illustration">Illustrarion</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/mobile">Mobile</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/print">Print</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/product-design">Product Desing</a> </li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/typography">Typography</a></li>
+                    <li><a target="_blank" href="https://dribbble.com/shots/popular/web-design">Wed Desing</a></li>
+                  </ul>
+                </section>
+
+                <button>
+                  <img src="https://images.icon-icons.com/3403/PNG/512/each_new_category_icon_215653.png" alt="" placeholder="" />
+                  <p>Filters</p>
+                </button>
+
+            </section>
+
+          {/* Cunado el boton filter se el de click acvitar o mostrar esto */}
+          <section>
+
+          </section>
+
+        </section>
+
         {/* Categorias */}
-        <section></section>
+        <section className="d-flex margen3 justify-content-center flex-wrap flex-column align-items-center w-100">
+          <section className="p-3 margen2 d-flex flex-wrap justify-content-start w-100">
+            {Galeria.map((item) => (
+              <div className="col-3 p-2 margen" key={item.id}>
+                {console.log(item.id)}
+                <Cartas item={item} />
+              </div>
+            ))}
+          </section>
+        </section>
 
         {/* Cartas */}
         <section></section>
