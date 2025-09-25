@@ -1,19 +1,34 @@
 import "./Principal.css";
 import { useState, useEffect } from "react";
 import Cartas from "../../Componentes/Cartas";
-import Conexion from '../../Componentes/Conexion'
+import Contenido_modal from "../../Componentes/Modal";
+import  Conexion  from "../../Superbase/Conexion";
+import { UserAuth } from "../../Superbase/AutenContex";
 
 export default function Principal() {
 
+  //Esto es para llamar a la funcion y traer el parametro que necesitamos, en este caso todo el metadatos del usuario
+  const {User} = UserAuth();
+
   const [Galeria, setGaleria] = useState([]);
   const [Filtro, setFiltro] = useState(false);
+  const [Id_Carta, SetId_Carta] = useState(null);
+
+  useEffect(() => {
+  if (Id_Carta !== null) {
+    document.body.classList.add("modal-open");
+  } else {
+    document.body.classList.remove("modal-open");
+  }
+}, [Id_Carta]);
+
 
   useEffect(()=> {
     async function getGaleria() {
-      const { data, error } = await Conexion.from("Galeria").select("*");
+      const { data, error } = await Conexion.from("Galeria").select("*");//.eq("Id_Coleccion",1); eso sirve para poder colcar el where solo q es diferetnte por la base de datos,xd
       if (error) console.error("❌ Error:", error.message);
       else{
-         console.log("✅ Datos de Usuarios:", data);
+        //  console.log("✅ Datos de Usuarios:", data);
          setGaleria(data);
       }
     } 
@@ -25,8 +40,8 @@ export default function Principal() {
   const [opciones,Setopciones] = useState(1);
 
   return (
-    <>
-
+    <> 
+    
       <main>
         {/* Primera parte */}
         <section className="row d-flex align-items-center justify-content-around p-4">
@@ -42,22 +57,22 @@ export default function Principal() {
             </article>
 
             <section className="parte_2">
-                <section className="row p-3">
-                    <button type="button" className={ opciones ==1 ? "btn col-2 btn-secondary " : "btn col-2 " }  onClick={()=> Setopciones(1) }>
+                <section className="row p-3 w-75 d-flex justify-content-strat">
+                    <button type="button" className={ opciones ==1 ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}}  onClick={()=> Setopciones(1) }>
                         <img
                             src="https://images.icon-icons.com/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png"
                             alt=""
                         />
                         <p>Shots</p>
                     </button>
-                    <button type="button" className={ opciones ==2  ? "btn col-2 btn-secondary " : "btn col-2 " } onClick={()=> Setopciones(2) }>
+                    <button type="button" className={ opciones ==2  ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}} onClick={()=> Setopciones(2) }>
                         <img
                             src="https://images.icon-icons.com/3256/PNG/512/group_team_people_icon_205855.png"
                             alt=""
                         />
                         <p>Designers</p>
                     </button>
-                    <button type="button" className={ opciones ==3 ? "btn col-2 btn-secondary " : "btn col-2 " } onClick={()=> Setopciones(3) } >
+                    <button type="button" className={ opciones ==3 ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}} onClick={()=> Setopciones(3) } >
                         <img
                             src="https://images.icon-icons.com/2622/PNG/512/book_icon_158035.png"
                             alt=""
@@ -66,8 +81,8 @@ export default function Principal() {
                     </button>
                 </section>
                 
-                <section className="m-2 p-2">
-                    <form className="d-flex barra_de_busqueda" role="search">
+                <section>
+                    <form className="d-flex barra_de_busqueda p-1" role="search">
                         <input
                             className="form-control me-2 barra"
                             type="search"
@@ -85,9 +100,9 @@ export default function Principal() {
                     </form>
                 </section>
 
-                <section className="d-flex opciones justify-content-around p-2">
+                <section className="d-flex opciones justify-content-around m-2">
                   <section className="d-flex opciones_texto">
-                    <h4>Popular :</h4>
+                    <h4>Popular: </h4>
                   </section>
                   {
                     opciones == 1 && 
@@ -110,7 +125,6 @@ export default function Principal() {
                   </section>
                   }
 
-                  
                   {
                     opciones == 3 && 
                     <section className=" d-flex opciones_populares justify-content-around">
@@ -152,7 +166,7 @@ export default function Principal() {
                 </section>
 
                 {/*Categorias  */}
-                <section className="w-50  align-self-center justify-content-around " >
+                <section className="w-75  align-self-center justify-content-around " >
                   <ul  style={{ listStyle: "none", padding: 0, margin: 0 , gap: "20px", }} className="d-flex justify-content-around">
                     <li><a target="_blank" href="https://dribbble.com/shots/popular/">Discorver</a></li>
                     <li><a target="_blank" href="https://dribbble.com/shots/popular/animation">Animation</a></li>
@@ -207,20 +221,38 @@ export default function Principal() {
 
         </section>
 
-        {/* Categorias */}
+          {/* Cartas */}
         <section className="d-flex justify-content-center flex-wrap flex-column align-items-center w-100">
           <section className="p-3 d-flex flex-wrap justify-content-start w-100">
             {Galeria.map((item) => (
-              <div className="col-3 p-2 margen" key={item.id}>
-                {console.log(item.id)}
-                <Cartas item={item} />
-              </div>
+              <section className="col-3 p-2 margen " key={item.id} >
+                {/* {console.log(item.id)}
+                {console.log(Id_Carta)} */}
+                 <Cartas item={item} SetId_Carta={SetId_Carta} />
+              </section>
             ))}
           </section>
         </section>
 
-        {/* Cartas */}
-        <section></section>
+        {Id_Carta !== null && (
+            <section className="modal d-block m-1">
+              <section className="modal-dialog modal-fullscreen " style={{height:"92%", width: "99%", border:"1px solid green"}}>
+                <section className="modal-content">
+                  <section className="modal-header ">
+                    <button
+                      type="button"
+                      className="btn-close"
+                      onClick={() => SetId_Carta(null)}
+                    ></button>
+                  </section>
+                  <section className="modal-body">
+                    <Contenido_modal data={Galeria.find((item) => item.id === Id_Carta)} />
+                  </section>
+                </section>
+              </section>
+            </section>
+        )}
+
 
         {/* Carusel */}
         <section></section>

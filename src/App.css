@@ -12,6 +12,8 @@ a{
 .logo img{
     width: 8vw;
     height: 3vw;
+    position: relative;
+    top: 30%;
 }
 
 .redes_sociales img{
@@ -25,4 +27,7 @@ video{
     
 }
 
-
+.fondo_grupo_2{
+    background: #e6dada;
+    background: linear-gradient(174deg, rgba(230, 218, 218, 1) 0%, rgba(20, 23, 20, 0.88) 50%);
+}

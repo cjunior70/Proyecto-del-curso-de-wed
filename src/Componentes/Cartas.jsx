@@ -1,18 +1,20 @@
 import { useState } from "react";
 
-export default function Cartas({item}){
+export default function Cartas({item,  SetId_Carta}){
 
       //Estado de las opciones para poder saber el estado de las opciones
       const [Megusta,SetMegusta] = useState(0);
 
     return(
         <>
-        <div className="card rounded-3 m-1 h-100" key={item.id}>
-           <section className="h-75">
-             <img src={item.Url_Contenido} className="rounded-3 w-100 h-100 card-img-top" alt="..."/>
-           </section>
+        <div className="card rounded-3 m-1 h-100 "  style={{border: "1px solid #ccc"}}   key={item.id}>
+            <section className="h-75"data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:"pointer"}} onClick={()=> SetId_Carta(item.id)}  >
+                <img src={item.Url_Contenido} className="rounded-3 w-100 h-100 card-img-top" alt="..."/>
+            </section>
+            
 
-            <h5 className="card-title"> {item.Titulo} </h5>
+            {/* Esto es para tener en cuenta el nombre de la coleccion */}
+            {/* <h5 className="card-title"> {item.Titulo} </h5> */}
 
             <div className="card-body h-25 w-100 d-flex justify-content-between">
 
@@ -49,6 +51,8 @@ export default function Cartas({item}){
                 </section>
             </div>
         </div>
+        
+        
         </>
     );
 }

@@ -1,34 +1,40 @@
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./Componentes/Footer";
 import Principal from "./Pages/Principal/Principal";
-import './App.css'
+import "./App.css";
+import Header from "./Componentes/Header";
+import Login from "./Pages/Login/Login";
+import { AutenContextProvider } from "./Superbase/AutenContex";
 
+// Layout controla Header/Footer
+function Layout() {
+  const location = useLocation();
 
-function App() {
-    return (
+  // Ocultar header y footer solo en /Login
+  const hideLayout = location.pathname.toLowerCase() === "/login";
+
+  return (
     <>
-      {/* Etiqueta para usar las rutas con vite */}
-      <Router>
-        {/* Caja que abraza las rutas */}
+      <AutenContextProvider>
+        {!hideLayout && <Header />}
+
         <Routes>
-          <Route></Route>
+          <Route path="/" element={<Principal />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
 
-        {/* Cabeza de la interfaz */}
-        <header>
-        </header>
-
-        {/* Principal Interfaz */}
-        <Principal></Principal>
-
-        {/*Pie de pagina estatico */}
-        <Footer></Footer>
-      </Router>
+        {!hideLayout && <Footer />}
+      </AutenContextProvider>
     </>
   );
 }
 
-export default App;
+function App() {
+  return (
+    <Router>
+      <Layout />
+    </Router>
+  );
+}
 
- 
+export default App;
