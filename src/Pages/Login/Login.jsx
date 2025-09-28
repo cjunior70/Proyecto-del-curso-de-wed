@@ -1,7 +1,6 @@
 import { UserAuth } from "../../Superbase/AutenContex";
-import video from "../../assets/Video_Fondo.mp4"
 import logo from "../../assets/logo.png";
-
+import { Link } from "react-router-dom";
 
 export default function Login(){
 
@@ -12,7 +11,7 @@ export default function Login(){
             <section className="d-flex" style={{height:"52.6vw" }}>
                 <section className="w-75 h-100 d-flex flex-column align-items-center" >
                     <section className=" w-100 m-2">
-                        <img src={logo} alt="" style={{width:"15%"}} />
+                        <Link to="/" ><img src={logo} alt="" style={{width:"15%"}} /></Link>
                     </section>
                     <section className="h-75 w-50 d-flex flex-column justify-content-evenly align-items-center h-50"     >
                             <section className="w-50 d-flex flex-column align-items-center" >
@@ -54,26 +53,21 @@ export default function Login(){
                             </section>
                     </section>
                 </section>
-                <section className="w-25 h-100 d-flex flex-column justify-content-evenly fondo_grupo_2" >
-                    <section>
-                        <h1>Wix Studio</h1>
-                        <h3>Design high-end sities <br /> with full creative control</h3>
-                        <a href="https://es.wix.com/studio?utm_campaign=pa_media_buying_studio_brnd_9%2F25_dribbble%5Esign-in&experiment_id=%5Einspiration%5E%5Ehigh-end-design">Start Now</a>
-                    </section>
-                    <section className="h-50 d-flex align-items-center">
-                        <video 
-                            src={video}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            disablePictureInPicture
-                            controls={false}  // oculta los controles
-                            className="video-background w-100 h-100 "
-                            />
-                    </section>
+               <section className="position-relative fondo_grupo_2" style={{ width:"40%",height: "100vh" }}>
+                    <video
+                        src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        disablePictureInPicture
+                        controls={false}
+                        className="w-100 h-100"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
+                    />
 
                 </section>
+
             </section>
         </>
     )

@@ -5,13 +5,22 @@ import "./App.css";
 import Header from "./Componentes/Header";
 import Login from "./Pages/Login/Login";
 import { AutenContextProvider } from "./Superbase/AutenContex";
+import Cuenta from "./Pages/Cuenta/Cuenta.jsx";
+import Work from "./Componentes/Work.jsx";
+import Services from "./Componentes/Services.jsx";
+import Boosted from "./Componentes/Boosted.jsx";
+import Collections from "./Componentes/Collections.jsx";
+import Liked from "./Componentes/Liked.jsx";
+import About from "./Componentes/About.jsx";
+import Subir from "./Pages/Subir/Subir.jsx";
 
 // Layout controla Header/Footer
 function Layout() {
   const location = useLocation();
 
   // Ocultar header y footer solo en /Login
-  const hideLayout = location.pathname.toLowerCase() === "/login";
+  const path = location.pathname.toLowerCase();
+  const hideLayout = path === "/login" || path === "/subir";
 
   return (
     <>
@@ -21,6 +30,15 @@ function Layout() {
         <Routes>
           <Route path="/" element={<Principal />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Cuenta/" element={<Cuenta />} >
+            <Route path="Work" element={<Work />} />
+            <Route path="Services" element={<Services></Services>} />
+            <Route path="Boosted" element={<Boosted></Boosted>} />
+            <Route path="Collections" element={<Collections></Collections>} />
+            <Route path="Liked" element={<Liked></Liked>} />
+            <Route path="About" element={<About></About>} />
+          </Route>
+          <Route path="/Subir" element={ <Subir></Subir> } ></Route>
         </Routes>
 
         {!hideLayout && <Footer />}

@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { AutenContextProvider } from './Superbase/AutenContex.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+   // <StrictMode>
       <App /> 
-  </StrictMode>,
+   // </StrictMode>,
 )

@@ -14,6 +14,7 @@ export default function Principal() {
   const [Filtro, setFiltro] = useState(false);
   const [Id_Carta, SetId_Carta] = useState(null);
 
+  
   useEffect(() => {
   if (Id_Carta !== null) {
     document.body.classList.add("modal-open");
@@ -41,7 +42,6 @@ export default function Principal() {
 
   return (
     <> 
-    
       <main>
         {/* Primera parte */}
         <section className="row d-flex align-items-center justify-content-around p-4">

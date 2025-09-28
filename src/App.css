@@ -31,3 +31,8 @@ video{
     background: #e6dada;
     background: linear-gradient(174deg, rgba(230, 218, 218, 1) 0%, rgba(20, 23, 20, 0.88) 50%);
 }
+
+.dropdown-menu {
+  left: auto !important;
+  right: 0 !important;
+}
