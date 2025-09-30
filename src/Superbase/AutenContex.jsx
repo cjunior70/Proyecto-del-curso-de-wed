@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "./Conexion";
+import { Navigate } from "react-router-dom";
 
 const AutenContext = createContext();
 
@@ -13,6 +14,9 @@ export const AutenContextProvider = ({children}) =>{
                 provider:"google",
             });
             if(error) throw new Error("A ocurrio un error durantela autenticacion");
+
+            Navigate("/");
+
             return data;
         }catch(error){
             console.log(error);
