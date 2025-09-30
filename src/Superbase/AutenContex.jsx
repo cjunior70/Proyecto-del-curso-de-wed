@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "./Conexion";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AutenContext = createContext();
 
@@ -8,6 +8,8 @@ export const AutenContextProvider = ({children}) =>{
     
     const [Userid,setUserID] = useState(null);
     const [user,setUser] = useState([]);
+    const navigate = useNavigate();
+
     async function signInWithGoogle() {
         try{
             const {data, error } = await supabase.auth.signInWithOAuth({
@@ -15,7 +17,7 @@ export const AutenContextProvider = ({children}) =>{
             });
             if(error) throw new Error("A ocurrio un error durantela autenticacion");
 
-            Navigate("/");
+            navigate("/");
 
             return data;
         }catch(error){

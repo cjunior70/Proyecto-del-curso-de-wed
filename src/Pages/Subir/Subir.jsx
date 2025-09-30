@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import "../Subir/Subir.css"
 import { useRef, useState } from "react";
 import  Conexion  from "../../Superbase/Conexion";
@@ -8,9 +8,13 @@ export default function Subir() {
   const fileInputRef = useRef(null);
   const [archivo, setArchivo] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [cargando, setCargando] = useState(false);
+  const navigate = useNavigate();
 
   const subirArchivo = async () => {
   if (!archivo) return;
+
+  setCargando(true); // inicia loader
 
   const { data, error } = await Conexion.storage
   .from("Imagnes")
@@ -43,10 +47,12 @@ if (error) {
       .single();
 
     if (dbError) console.error("❌ Error guardando en tabla:", dbError);
-    else console.log("✅ Guardado en tabla:", dbData);
+    else {
+      console.log("✅ Guardado en tabla:", dbData,  setCargando(false) );
+      alert("Archivo subido correctamente");
+      navigate("/");
+    } 
   }
-
-  Navigate("/");
 
 };
 
@@ -73,7 +79,17 @@ if (error) {
               </button>
             </section>
             <section className="w-25 d-flex justify-content-between">
-              <button onClick={subirArchivo}  className="btn btn-secondary">To go up</button>
+              <button onClick={subirArchivo}  className="btn btn-secondary" disabled={cargando} style={{ minWidth: "120px" }}>
+                {cargando ? (
+                              <img
+                                src="https://i.gifer.com/ZZ5H.gif" // 🔄 gif loader (puedes cambiarlo)
+                                alt="Cargando..."
+                                style={{ width: "25px", height: "25px" }}
+                              />
+                            ) : (
+                              "Subir Contenido"
+                            )}
+              </button>
               <button className="btn btn-dark">Continue</button>
             </section>
           </section>
@@ -90,7 +106,7 @@ if (error) {
         >
           <section
             className="w-75 h-75 d-flex flex-column align-items-center justify-content-center"
-            style={{ border: "3px dashed red", padding: "20px" }}
+            style={{ border: "2px dashed #C2C0C0", padding: "30px" }}
           >
             <section className="d-flex flex-column align-items-center justify-content-center">
               {preview ? (
