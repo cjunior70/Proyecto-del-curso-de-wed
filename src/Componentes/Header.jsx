@@ -74,8 +74,8 @@ export default function Header(){
                             <section 
                                 className="d-flex justify-content-around align-items-center flex-grow-1"  
                             >
-                                <button className="btn btn btn-secondary rounded-4" > <Link to="/Subir" >Upgrade to Pro</Link> </button>
-                                <button className="btn border-light-subtle rounded-4"> <Link to="Subir" >+ Share Work </Link> </button>
+                                <button className="btn btn btn-secondary rounded-4" > Upgrade to Pro </button>
+                                <button className="btn border-light-subtle rounded-4"> <Link to="/Subir" >+ Share Work </Link> </button>
                                 <button className="btn border-0 p-1">
                                 <img 
                                     src="https://images.icon-icons.com/488/PNG/512/messages_47711.png" 
