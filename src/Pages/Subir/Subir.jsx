@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import "../Subir/Subir.css"
 import { useRef, useState } from "react";
 import  Conexion  from "../../Superbase/Conexion";
@@ -21,22 +21,32 @@ export default function Subir() {
 
 if (error) {
   console.error("❌ Error al subir archivo:", error.message);
-} else {
-  // Obtenemos la URL pública
-  const { publicUrl } = Conexion.storage
-    .from("Imagnes")
-    .getPublicUrl(`/${archivo.name}`).data;
+  } else {
+    // Obtenemos la URL pública
+    const { publicUrl } = Conexion.storage
+      .from("Imagnes")
+      .getPublicUrl(`/${archivo.name}`).data;
 
-  console.log("✅ URL pública:", publicUrl);
+    console.log("✅ URL pública:", publicUrl);
 
-  // ✅ Aquí guardas directamente la URL en la tabla Galeria
-  const { data: dbData, error: dbError } = await Conexion
-    .from("Galeria")
-    .insert([{ url: publicUrl, nombre: archivo.name }]);
+     // 💾 Guardamos en la tabla Galeria
+    const { data: dbData, error: dbError } = await Conexion
+      .from("Galeria")
+      .insert([
+        {
+          Id_Coleccion: 7, // tu colección fija
+          Titulo: archivo.name, // puedes pedirlo en un input si quieres algo distinto
+          Url_Contenido: publicUrl,
+        },
+      ])
+      .select()
+      .single();
 
-  if (dbError) console.error("❌ Error guardando en tabla:", dbError);
-  else console.log("✅ Guardado en tabla:", dbData);
-}
+    if (dbError) console.error("❌ Error guardando en tabla:", dbError);
+    else console.log("✅ Guardado en tabla:", dbData);
+  }
+
+  Navigate("/");
 
 };
 
@@ -63,8 +73,8 @@ if (error) {
               </button>
             </section>
             <section className="w-25 d-flex justify-content-between">
-              <button className="btn btn-secondary">Save as draft</button>
-              <button onClick={subirArchivo} className="btn btn-dark">Continue</button>
+              <button onClick={subirArchivo}  className="btn btn-secondary">To go up</button>
+              <button className="btn btn-dark">Continue</button>
             </section>
           </section>
           <section>
