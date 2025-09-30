@@ -17,8 +17,6 @@ export const AutenContextProvider = ({children}) =>{
             });
             if(error) throw new Error("A ocurrio un error durantela autenticacion");
 
-            navigate("/");
-
             return data;
         }catch(error){
             console.log(error);
@@ -35,6 +33,7 @@ export const AutenContextProvider = ({children}) =>{
           setUser(session?.user.user_metadata);
           insertarUsuario(session?.user.user_metadata, setUserID);
           console.log("prueba del usuario : " , session?.user.user_metadata);
+          navigate("/");
 
       });
           return ()=>{
