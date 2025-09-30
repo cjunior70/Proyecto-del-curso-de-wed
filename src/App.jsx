@@ -24,7 +24,25 @@ function Layout() {
 
   return (
     <>
-      <h1>holaaaaaaaaaa </h1>
+      <AutenContextProvider>
+        {!hideLayout && <Header />}
+
+        <Routes>
+          <Route path="/" element={<Principal />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Cuenta/" element={<Cuenta />} >
+            <Route path="Work" element={<Work />} />
+            <Route path="Services" element={<Services></Services>} />
+            <Route path="Boosted" element={<Boosted></Boosted>} />
+            <Route path="Collections" element={<Collections></Collections>} />
+            <Route path="Liked" element={<Liked></Liked>} />
+            <Route path="About" element={<About></About>} />
+          </Route>
+          <Route path="/Subir" element={ <Subir></Subir> } ></Route>
+        </Routes>
+
+        {!hideLayout && <Footer />}
+      </AutenContextProvider>
     </>
   );
 }
