@@ -9,12 +9,21 @@ export default function Cuenta(){
 
     return(
         <>
-
             <section>
                 <section className="d-flex flex-column align-items-center">
                     <section className="d-flex w-100 justify-content-center">
-                        <figure>
-                            <img src={user.avatar_url} alt="" className="rounded-circle"  />
+                        <figure style={{width:"5%", height:"5%" }} >
+                            {user.avatar_url && (
+                                        <img 
+                                            className="rounded-circle"
+                                            src={user.avatar_url}
+                                            alt="Avatar de usuario"
+                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                            onError={(e) => {
+                                            e.currentTarget.src = "https://images.icon-icons.com/1539/PNG/512/3289576-individual-man-people-person_107097.png";
+                                            }}
+                                        />
+                                    )}
                         </figure>
                         <section>
                             <h2>{user.full_name} </h2>

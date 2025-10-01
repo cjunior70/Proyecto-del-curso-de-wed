@@ -33,6 +33,8 @@ export const AutenContextProvider = ({children}) =>{
           setUser(session?.user.user_metadata);
           insertarUsuario(session?.user.user_metadata, setUserID);
           console.log("prueba del usuario : " , session?.user.user_metadata);
+          const idUsuario = localStorage.getItem("Id_Usuario");
+          setUserID(idUsuario);
           navigate("/");
 
       });
@@ -74,9 +76,12 @@ async function insertarUsuario(user,setUserID) {
   if (usuarioExistente) {
     console.log("⚠️ El usuario ya existe:", usuarioExistente);
 
-    setUserID(usuarioExistente.id)
+    setUserID(usuarioExistente.Id);
+    
+    // 👉 guardamos en localStorage el id del usuario insertado
+    localStorage.setItem("Id_Usuario", usuarioExistente.Id);
 
-    return usuarioExistente.id; // devolvemos el id
+    return usuarioExistente.Id; // devolvemos el id
   }
 
   // 2️⃣ Insertar nuevo usuario
@@ -102,7 +107,7 @@ async function insertarUsuario(user,setUserID) {
     console.log("✅ Usuario insertado:", data);
 
     // 👉 guardamos en localStorage el id del usuario insertado
-    localStorage.setItem("Id_Usuario", data.id);
+    localStorage.setItem("Id_Usuario", data.Id);
 
     return data.id; // devolvemos id insertado
   }

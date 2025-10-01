@@ -2,14 +2,22 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import "../Subir/Subir.css"
 import { useRef, useState } from "react";
 import  Conexion  from "../../Superbase/Conexion";
+import { UserAuth } from "../../Superbase/AutenContex";
 
+  
 
 export default function Subir() {
+  
+  const {Userid} = UserAuth();
+
   const fileInputRef = useRef(null);
   const [archivo, setArchivo] = useState(null);
   const [preview, setPreview] = useState(null);
   const [cargando, setCargando] = useState(false);
   const navigate = useNavigate();
+
+  // 🚀 Recuperamos el usuario logueado
+  console.log("Id del usuario : " + Userid )
 
   const subirArchivo = async () => {
   if (!archivo) return;
@@ -33,28 +41,52 @@ if (error) {
 
     console.log("✅ URL pública:", publicUrl);
 
-     // 💾 Guardamos en la tabla Galeria
-    const { data: dbData, error: dbError } = await Conexion
+      // 1️⃣ Crear la colección (si necesitas crearla)
+      const { data: coleccionData, error: coleccionError } = await Conexion
+        .from("Coleccion")
+        .insert([
+          {
+            Id_Usuario: Userid,   // 👈 el usuario dueño de la colección
+            Titulo: "Mi nueva colección",
+            Descripcion: "Colección creada automáticamente",
+          },
+        ])
+        .select()
+        .single();
+
+    if (coleccionError) {
+      console.error("❌ Error creando colección:", coleccionError);
+      return;
+    }
+
+    console.log("✅ Colección creada:", coleccionData);
+
+    // 2️⃣ Guardar el archivo en la galería asociado a esa colección
+    const { data: galeriaData, error: galeriaError } = await Conexion
       .from("Galeria")
       .insert([
         {
-          Id_Coleccion: 7, // tu colección fija
-          Titulo: archivo.name, // puedes pedirlo en un input si quieres algo distinto
+          Id_Coleccion: coleccionData.Id_Coleccion, // 👈 el ID que devolvió la colección
+          Titulo: archivo.name,
           Url_Contenido: publicUrl,
         },
       ])
       .select()
       .single();
 
-    if (dbError) console.error("❌ Error guardando en tabla:", dbError);
-    else {
-      console.log("✅ Guardado en tabla:", dbData,  setCargando(false) );
+    if (galeriaError) {
+      console.error("❌ Error guardando en galería:", galeriaError);
+    } else {
+      console.log("✅ Guardado en galería:", galeriaData);
+      setCargando(false);
       alert("Archivo subido correctamente");
-      navigate("/");
-    } 
+      navigate("/"); // 👈 redirige a principal
+    }
+
   }
 
 };
+
 
   const handleClick = () => {
     fileInputRef.current.click();
