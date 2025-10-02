@@ -103,8 +103,8 @@ if (error) {
   return (
     <>
       <section className="w-100 " style={{ height: "52.6vw" }}>
-        <section className="d-flex flex-column w-100 h-25 align-items-center justify-content-around">
-          <section className="d-flex justify-content-between w-75">
+        <section className="d-flex flex-column w-100 h-25 align-items-center justify-content-between p-3">
+          <section className="d-flex justify-content-between w-75 ">
             <section className="w-25">
               <button className="btn btn-light">
                 <Link to={"/"}>Cancel</Link>
@@ -125,8 +125,19 @@ if (error) {
               <button className="btn btn-dark">Continue</button>
             </section>
           </section>
-          <section>
-            <h1>What have you been working on ¿?</h1>
+          <section className="d-flex flex-column h-50 w-75 align-items-center">
+            {
+              preview ? (
+                  <>
+                    <form action="" className="w-100 h-100 " >
+                      <input type="text" className="titulo w-100 h-100 border border-top-0 fs-3 text" placeholder="Ingrese un titulo para la coleccion"  />
+                    </form>
+                  </>
+              ) :( 
+                
+                <h1>What have you been working on ¿?</h1>
+              )
+            }
           </section>
         </section>
 
@@ -168,14 +179,14 @@ if (error) {
               )}
             </section>
             <section className="d-flex align-items-center justify-content-center">
-              <ul>
-                <li>High resolution images (png, jpg, gif)</li>
-                <li>High resolution images (png, jpg, gif)</li>
-              </ul>
-              <ul>
-                <li>High resolution images (png, jpg, gif)</li>
-                <li>Only upload media you own the rights to</li>
-              </ul>
+                <ul>
+                  <li>High resolution images (png, jpg, gif)</li>
+                  <li>High resolution images (png, jpg, gif)</li>
+                </ul>
+                <ul>
+                  <li>High resolution images (png, jpg, gif)</li>
+                  <li>Only upload media you own the rights to</li>
+                </ul>
             </section>
           </section>
         </section>

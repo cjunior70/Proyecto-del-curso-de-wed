@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "./Conexion";
-import { Navigate, useNavigate } from "react-router-dom";
 
 const AutenContext = createContext();
 
@@ -8,7 +7,6 @@ export const AutenContextProvider = ({children}) =>{
     
     const [Userid,setUserID] = useState(null);
     const [user,setUser] = useState([]);
-    const navigate = useNavigate();
 
     async function signInWithGoogle() {
         try{
@@ -35,7 +33,6 @@ export const AutenContextProvider = ({children}) =>{
           console.log("prueba del usuario : " , session?.user.user_metadata);
           const idUsuario = localStorage.getItem("Id_Usuario");
           setUserID(idUsuario);
-          navigate("/");
 
       });
           return ()=>{
