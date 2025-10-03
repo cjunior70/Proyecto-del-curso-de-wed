@@ -5,7 +5,7 @@ export default function Cartas({item,  SetId_Carta}){
       //Estado de las opciones para poder saber el estado de las opciones
       const [Megusta,SetMegusta] = useState(0);
 
-        //console.log("esta es lo que tra :", JSON.stringify(item, null, 2));
+        // console.log("esta es lo que tra :", JSON.stringify(item, null, 2));
 
 
     return(
@@ -26,16 +26,16 @@ export default function Cartas({item,  SetId_Carta}){
                 className="rounded-3 w-100 h-100 card-img-top"
             /> */}
 
-            <div className="card-body h-25 w-100 d-flex justify-content-between">
+            <div className="card-body h-25 w-100 d-flex justify-content-between align-items-center">
 
                 {/* logo y nombre */}
-                <section className='w-50 d-flex align-items-center justify-content-evenly'>
-                    <img style={{width:40, height:40}} className="rounded-circle" src={item.Usuarios?.Imagen || "https://via.placeholder.com/50"} alt="" 
+                <section className=' d-flex align-items-center justify-content-evenly'>
+                    <img style={{width:30, height:30}} className="rounded-circle" src={item.Usuarios?.Imagen || "https://via.placeholder.com/50"} alt="" 
                         onError={(e) => {
                             e.currentTarget.src = "https://images.icon-icons.com/1539/PNG/512/3289576-individual-man-people-person_107097.png";
                         }}
                     />
-                    <p>{item.Usuarios?.Nombre}</p>
+                    <p style={{ width:"10vw", height:"2vw"}} >{item.Usuarios?.Nombre}</p>
                 </section>
 
                 {/* like y vistas */}

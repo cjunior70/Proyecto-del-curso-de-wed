@@ -3,6 +3,7 @@ import  Conexion  from "../Superbase/Conexion";
 import { UserAuth } from "../Superbase/AutenContex";
 import Cartas from "./Cartas";
 import Contenido_modal from "./Modal";
+import { Outlet } from "react-router-dom";
 
 export default function Work(){
 

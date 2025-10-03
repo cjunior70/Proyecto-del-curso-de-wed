@@ -1,8 +1,67 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Conexion from "../Superbase/Conexion.js";
 
 export default function Contenido_modal({ data }) {
     const [Megusta, SetMegusta] = useState(0);
     const [Guardar, setGuardar] = useState(0);
+    const location = useLocation();
+
+    console.log("esta es lo que tra :", JSON.stringify(data, null, 2));
+
+    // Estado para controlar el GIF de carga
+    const [loading, setLoading] = useState(false);
+
+    const handleEliminar = async () => {
+        const confirmar = window.confirm(
+            "¿Estás seguro que deseas eliminar esta colección? Esta acción no se puede deshacer."
+        );
+        if (!confirmar) return;
+
+        try {
+            setLoading(true); // Mostrar GIF de carga
+
+            const paths = data.Galeria.map(item => {
+                const url = new URL(item.Url_Contenido);
+                return url.pathname.split("/Imagnes/")[1]; // Solo ruta relativa
+            }).filter(Boolean);
+
+            if (paths.length > 0) {
+                const { error: errorStorage } = await Conexion.storage
+                    .from("Imagnes")
+                    .remove(paths);
+
+                if (errorStorage) console.error("Error eliminando del storage:", errorStorage);
+            }
+
+            // 2️⃣ Eliminar registros de la galería asociados
+            const { error: errorGaleria } = await Conexion
+                .from("Galeria")
+                .delete()
+                .eq("Id_Coleccion", data.Id);
+
+            if (errorGaleria) throw errorGaleria;
+
+            // 3️⃣ Eliminar la colección
+            const { error: errorColeccion } = await Conexion
+                .from("Coleccion")
+                .delete()
+                .eq("Id", data.Id);
+
+            if (errorColeccion) throw errorColeccion;
+
+            alert("Colección eliminada correctamente ✅");
+            window.history.back();
+        } catch (err) {
+            console.error("Error al eliminar:", err.message);
+            alert("Hubo un error al eliminar ❌");
+        } finally {
+            setLoading(false); // Ocultar GIF
+        }
+    };
+
+
+
 
     return (
         <section className="d-flex align-items-start w-100 justify-content-center">
@@ -101,7 +160,7 @@ export default function Contenido_modal({ data }) {
             </section>
 
             {/* Parte derecha con los 3 botones grandes */}
-            <section className="d-flex flex-column align-items-end p-3 gap-2 ">
+            <section className="d-flex flex-column p-3 gap-2 ">
                 <button className="btn btn-light">
                     <img src="https://images.icon-icons.com/1524/PNG/512/commentdiscussion_106382.png" width="30" />
                 </button>
@@ -111,6 +170,28 @@ export default function Contenido_modal({ data }) {
                 <button className="btn btn-light">
                     <img src="https://images.icon-icons.com/1812/PNG/512/4213426-about-description-help-info-information-notification_115427.png" width="32" />
                 </button>
+                {location.pathname === "/Cuenta/Work" && (
+                    <>
+                        <Link to="/Editar"  state={{data}} className="btn btn-light" style={{position:"relative", top:"5vw"}}>
+                            <img src="https://images.icon-icons.com/2098/PNG/512/edit_icon_128873.png" alt="Editar" width="30" />
+                        </Link>
+                        <button 
+                            className="btn btn-danger px-4"
+                            style={{position:"relative", top:"8vw"}}
+                            onClick={handleEliminar}
+                            disabled={loading}
+                            >
+                            {loading ? (
+                                <img src="https://i.gifer.com/ZZ5H.gif" alt="Cargando..." width="30" height="30" />
+                            ) : (
+                                <>
+                                    Eliminar <br /> Colección
+                                </> 
+                            )}
+                        </button>
+                    </>
+                )}
+
             </section>
         </section>
     );

@@ -27,7 +27,7 @@ export default function Principal() {
   useEffect(()=> {
     async function getGaleria() {
 
-        // consulta con JOIN entre Coleccion y Galeria (de todos los usuarios)
+      // consulta con JOIN entre Coleccion y Galeria (de todos los usuarios)
       const { data, error } = await Conexion
       .from("Coleccion")
       .select(`
@@ -45,6 +45,12 @@ export default function Principal() {
           Titulo,
           Url_Contenido,
           Id_Coleccion
+        ),
+        Liked_Shots (
+          Id,
+          Id_Usuario,
+          Id_Coleccion,
+          Like
         )
       `);
 

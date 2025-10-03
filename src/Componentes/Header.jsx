@@ -122,7 +122,7 @@ export default function Header(){
 
                                 {/* Menú de opciones */}
                                 <ul className="dropdown-menu dropdown-menu-end">
-                                    <li><Link to="/Cuenta/work" >Perfil</Link> </li>
+                                    <li><Link to="/Cuenta/Work" >Perfil</Link> </li>
                                     <li><Link to="/Configuracion" >Configuración</Link> </li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><button className="dropdown-item" onClick={signout}> <Link to={"/"} >Cerrar sesión</Link> </button></li>
