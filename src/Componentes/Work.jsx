@@ -34,6 +34,11 @@ export default function Work(){
             Titulo,
             Url_Contenido,
             Id_Coleccion
+          ),
+          Usuarios: Coleccion_Id_Usuario_fkey (
+          Id,
+          Nombre,
+          Imagen
           )
         `)
         .eq("Id_Usuario", Userid); // 👈 filtra las colecciones de este usuario
@@ -41,7 +46,7 @@ export default function Work(){
       if (error) {
         console.error("❌ Error:", error.message);
       } else {
-        // console.log("✅ Colecciones con sus imágenes:", data);
+          console.log("✅ Colecciones con sus imágenes:", data);
         setGaleria(data);
       }
     }
@@ -67,7 +72,7 @@ export default function Work(){
             
                     {Id_Carta !== null && (
                         <section className="modal d-block m-1">
-                          <section className="modal-dialog modal-fullscreen " style={{height:"92%", width: "99%", border:"1px solid green"}}>
+                          <section className="modal-dialog modal-fullscreen" style={{height:"92%", width: "99%"}}>
                             <section className="modal-content">
                               <section className="modal-header ">
                                 <button
@@ -77,7 +82,7 @@ export default function Work(){
                                 ></button>
                               </section>
                               <section className="modal-body">
-                                <Contenido_modal data={Galeria.find((item) => item.id === Id_Carta)} />
+                                <Contenido_modal data={Galeria.find((item) => item.Id === Id_Carta)} />
                               </section>
                             </section>
                           </section>

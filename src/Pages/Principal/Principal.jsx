@@ -257,7 +257,7 @@ export default function Principal() {
 
         {Id_Carta !== null && (
             <section className="modal d-block m-1">
-              <section className="modal-dialog modal-fullscreen " style={{height:"92%", width: "99%", border:"1px solid green"}}>
+              <section className="modal-dialog modal-fullscreen border border-black rounded-4" style={{height:"92%", width: "99%"}}>
                 <section className="modal-content">
                   <section className="modal-header ">
                     <button
@@ -267,7 +267,7 @@ export default function Principal() {
                     ></button>
                   </section>
                   <section className="modal-body">
-                    <Contenido_modal data={Galeria.find((item) => item.id === Id_Carta)} />
+                    <Contenido_modal data={Galeria.find((item) => item.Id === Id_Carta)} />
                   </section>
                 </section>
               </section>

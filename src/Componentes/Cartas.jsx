@@ -5,13 +5,13 @@ export default function Cartas({item,  SetId_Carta}){
       //Estado de las opciones para poder saber el estado de las opciones
       const [Megusta,SetMegusta] = useState(0);
 
-    //    console.log("esta es lo que tra :", JSON.stringify(item, null, 2));
+        //console.log("esta es lo que tra :", JSON.stringify(item, null, 2));
 
 
     return(
         <>
         <div className="card rounded-3 m-1 h-100 "  style={{border: "1px solid #ccc"}}   key={item.id}>
-            <section className="h-75"data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:"pointer"}} onClick={()=> SetId_Carta(item.id)}  >
+            <section className="h-75"data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:"pointer"}} onClick={()=> SetId_Carta(item.Id)}  >
                 <img src={item.Galeria[0]?.Url_Contenido || "https://via.placeholder.com/200"}
                     alt={item.Galeria[0]?.Titulo || "Sin imagen"}
                     className="rounded-3 w-100 h-100 card-img-top"/>
