@@ -92,6 +92,7 @@ async function insertarUsuario(user,setUserID) {
         Website: null,
         Calendar_Url: null,
         Logo: user.avatar_url || null,
+        Imagen: user.Logo || null,
       },
     ])
     .select()

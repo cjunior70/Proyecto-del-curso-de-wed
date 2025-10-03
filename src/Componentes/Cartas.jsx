@@ -5,23 +5,37 @@ export default function Cartas({item,  SetId_Carta}){
       //Estado de las opciones para poder saber el estado de las opciones
       const [Megusta,SetMegusta] = useState(0);
 
+    //    console.log("esta es lo que tra :", JSON.stringify(item, null, 2));
+
+
     return(
         <>
         <div className="card rounded-3 m-1 h-100 "  style={{border: "1px solid #ccc"}}   key={item.id}>
             <section className="h-75"data-bs-toggle="modal" data-bs-target="#exampleModal" style={{cursor:"pointer"}} onClick={()=> SetId_Carta(item.id)}  >
-                <img src={item.Url_Contenido} className="rounded-3 w-100 h-100 card-img-top" alt="..."/>
+                <img src={item.Galeria[0]?.Url_Contenido || "https://via.placeholder.com/200"}
+                    alt={item.Galeria[0]?.Titulo || "Sin imagen"}
+                    className="rounded-3 w-100 h-100 card-img-top"/>
             </section>
-            
 
             {/* Esto es para tener en cuenta el nombre de la coleccion */}
-            {/* <h5 className="card-title"> {item.Titulo} </h5> */}
+            {/* <h5 className="card-title"> {item.Titulo} </h5>
+            
+            <img 
+                src={item.Galeria[0]?.Url_Contenido || "https://via.placeholder.com/200"} 
+                alt={item.Galeria[0]?.Titulo || "Sin imagen"} 
+                className="rounded-3 w-100 h-100 card-img-top"
+            /> */}
 
             <div className="card-body h-25 w-100 d-flex justify-content-between">
 
                 {/* logo y nombre */}
                 <section className='w-50 d-flex align-items-center justify-content-evenly'>
-                    <img style={{width:40, height:40}} src="https://tse2.mm.bing.net/th/id/OIP.Ow5rcUh78URQNNRu710CCQHaHT?rs=1&pid=ImgDetMain&o=7&rm=3" alt="" />
-                    <p>juancho polo</p>
+                    <img style={{width:40, height:40}} className="rounded-circle" src={item.Usuarios?.Imagen || "https://via.placeholder.com/50"} alt="" 
+                        onError={(e) => {
+                            e.currentTarget.src = "https://images.icon-icons.com/1539/PNG/512/3289576-individual-man-people-person_107097.png";
+                        }}
+                    />
+                    <p>{item.Usuarios?.Nombre}</p>
                 </section>
 
                 {/* like y vistas */}

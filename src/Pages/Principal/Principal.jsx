@@ -16,20 +16,41 @@ export default function Principal() {
 
   
   useEffect(() => {
-  if (Id_Carta !== null) {
-    document.body.classList.add("modal-open");
-  } else {
-    document.body.classList.remove("modal-open");
-  }
-}, [Id_Carta]);
+    if (Id_Carta !== null) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [Id_Carta]);
 
 
   useEffect(()=> {
     async function getGaleria() {
-      const { data, error } = await Conexion.from("Galeria").select("*");//.eq("Id_Coleccion",1); eso sirve para poder colcar el where solo q es diferetnte por la base de datos,xd
+
+        // consulta con JOIN entre Coleccion y Galeria (de todos los usuarios)
+      const { data, error } = await Conexion
+      .from("Coleccion")
+      .select(`
+        Id,
+        Id_Usuario,
+        Titulo,
+        Descripcion,
+        Usuarios: Coleccion_Id_Usuario_fkey (
+          Id,
+          Nombre,
+          Imagen
+        ),
+        Galeria (
+          Id,
+          Titulo,
+          Url_Contenido,
+          Id_Coleccion
+        )
+      `);
+
       if (error) console.error("❌ Error:", error.message);
       else{
-        //  console.log("✅ Datos de Usuarios:", data);
+          console.log("✅ Datos de Usuarios:", data);
          setGaleria(data);
       }
     } 
@@ -225,9 +246,9 @@ export default function Principal() {
         <section className="d-flex justify-content-center flex-wrap flex-column align-items-center w-100">
           <section className="p-3 d-flex flex-wrap justify-content-start w-100">
             {Galeria.map((item) => (
-              <section className="col-3 p-2 margen " key={item.id} >
-                {/* {console.log(item.id)}
-                {console.log(Id_Carta)} */}
+              <section className="col-3 p-2 margen " key={item.Id} >
+                {/* {console.log(item)} */}
+                {/* {console.log(Id_Carta)} */}
                  <Cartas item={item} SetId_Carta={SetId_Carta} />
               </section>
             ))}

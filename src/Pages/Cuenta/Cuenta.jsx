@@ -6,7 +6,7 @@ import { Link, Outlet } from "react-router-dom";
 export default function Cuenta(){
 
     const {user } = UserAuth();
-
+ 
     return(
         <>
             <section>
