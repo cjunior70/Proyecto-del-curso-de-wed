@@ -72,7 +72,7 @@ export default function Principal() {
       <main>
         {/* Primera parte */}
         <section className="row d-flex align-items-center justify-content-around p-4">
-          <section className="col-6 grupo_1 p-4">
+          <section className="col-6 principal_grupo_1 grupo_1 p-4" style={{border:"1px solid green"}}>
             <article className="parte_1 ">
               <h1>
                 Discover the <br /> World’s Top Designers
@@ -167,7 +167,7 @@ export default function Principal() {
             </section>
           </section>
 
-          <section className="col-6 grupo_2 p-2">
+          <section className="video col-6 grupo_2 p-2">
             <video
               src="https://cdn.dribbble.com/uploads/64271/original/97acb3d0a0a7b92e0c0038b1568a59fd.mp4?1753183788"
               autoPlay
