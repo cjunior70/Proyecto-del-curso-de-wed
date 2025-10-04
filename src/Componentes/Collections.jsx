@@ -1,7 +1,9 @@
 export default function Collections(){
     return(
         <>
-            <h1>Estamos en Collections</h1>
+            <section style={{height:"20vw"}}>
+                <p>Aun no Terminada</p>
+            </section>
        </>
     )
 }

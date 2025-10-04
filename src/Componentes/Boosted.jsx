@@ -1,7 +1,9 @@
 export default function Boosted(){
     return(
         <>
-            <h1>Estamos en Boosted</h1>
+             <section style={{height:"20vw"}}>
+                <p>Aun no Terminada</p>
+            </section>
         </>
     )
 }

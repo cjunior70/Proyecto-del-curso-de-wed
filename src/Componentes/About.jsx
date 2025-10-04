@@ -1,7 +1,9 @@
 export default function About(){
     return(
         <>
-            <h1>Estamos en About</h1>
+             <section style={{height:"20vw"}}>
+                <p>Aun no Terminada</p>
+            </section>
        </>
     )
 }

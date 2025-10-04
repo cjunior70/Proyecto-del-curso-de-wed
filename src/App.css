@@ -36,3 +36,28 @@ video{
   left: auto !important;
   right: 0 !important;
 }
+
+
+/*Responsivo*/
+
+@media screen and (max-width: 1000px) {
+    .barra_de_menu{
+        display: none;
+    }
+
+    .general{
+        display: flex;
+        justify-content: space-around
+
+    }
+
+    .imagen{
+        position: relative;
+        left:15vw;
+    }
+
+    .menu_de_usuario{
+         position: relative;
+        left:-10vw;
+    }
+};

@@ -10,15 +10,15 @@ export default function Header(){
     
     return(
         <>
-            <section className="d-flex justify-content-between m-2 align-items-center">
+            <section className="d-flex justify-content-between general m-2 align-items-center">
                 <section className="w-50 d-flex justify-content-between p-1 ">
-                    <figure className="logo col-1 w-25">
+                    <figure className="logo col-1 w-25 imagen">
                         <Link to={"/"}><img src={logo} alt=""/></Link>
                     </figure>
-                    <section className="d-flex justify-content-around w-75 align-items-center">
-                        <section className="dropdown">
+                    <section className="d-flex justify-content-around barra_de_menu  w-75 align-items-center">
+                        <section className="dropdown barra_de_menu">
                             <a href="" className="dropdown-text">Menu &#9662; </a>
-                            <ul className="dropdown-menu">
+                            <ul className="dropdown-menu barra_de_menu">
                                 <section>
                                     <li><a href="" className="dropdown-item">Popular</a></li>
                                     <li><a href="" className="dropdown-item">New and Noteworthy</a></li>
@@ -35,7 +35,7 @@ export default function Header(){
                                 </section>
                             </ul>
                         </section>
-                        <section className="dropdown">
+                        <section className="dropdown barra_de_menu">
                             <a href="" className="dropdown-text">Find Talent &#9662;</a>
                             <ul className="dropdown-menu">
                                 <li><a href="" className="dropdown-item">Get Matched Now</a></li>
@@ -45,7 +45,7 @@ export default function Header(){
                                 <li><a href=""  className="dropdown-item">Post a Full-Time-Job</a></li>
                             </ul>
                         </section>
-                        <section className="dropdown">
+                        <section className="dropdown barra_de_menu">
                             <a href="" className="dropdown-text">Get Hired &#9662;</a>
                             <ul className="dropdown-menu">
                                 <li><a className="dropdown-item">Update to Pro</a></li>
@@ -53,7 +53,7 @@ export default function Header(){
                                 <li><a className="dropdown-item">Full-Time Jobs</a></li>
                             </ul>
                         </section>
-                        <section>
+                        <section className="barra_de_menu">
                             <a href="">Blog </a>
                         </section>
                     </section>
@@ -72,10 +72,10 @@ export default function Header(){
                             >
                             {/* Botones */}
                             <section 
-                                className="d-flex justify-content-around align-items-center flex-grow-1"  
+                                className="d-flex menu_de_usuario justify-content-around align-items-center flex-grow-1"  
                             >
-                                <button className="btn btn btn-secondary rounded-4" > Upgrade to Pro </button>
-                                <button className="btn border-light-subtle rounded-4"> <Link to="/Subir" >+ Share Work </Link> </button>
+                                <button className="btn btn btn-secondary rounded-4 barra_de_menu"  > Upgrade to Pro </button>
+                                <button className="btn border-light-subtle rounded-4 barra_de_menu"> <Link to="/Subir" >+ Share Work </Link> </button>
                                 <button className="btn border-0 p-1">
                                 <img 
                                     src="https://images.icon-icons.com/488/PNG/512/messages_47711.png" 
@@ -95,7 +95,7 @@ export default function Header(){
                            {/* Avatar con dropdown */}
                             <section className="dropdown ms-3">
                                 <section 
-                                    className="d-flex align-items-center justify-content-center dropdown-toggle"  
+                                    className="d-flex menu_de_usuario align-items-center justify-content-center dropdown-toggle"  
                                     style={{ 
                                     width: "50px", 
                                     height: "50px", 
@@ -121,7 +121,7 @@ export default function Header(){
                                 </section>
 
                                 {/* Menú de opciones */}
-                                <ul className="dropdown-menu dropdown-menu-end">
+                                <ul className="dropdown-menu menu_de_usuario dropdown-menu-end">
                                     <li><Link to="/Cuenta/Work" >Perfil</Link> </li>
                                     <li><Link to="/Configuracion" >Configuración</Link> </li>
                                     <li><hr className="dropdown-divider" /></li>

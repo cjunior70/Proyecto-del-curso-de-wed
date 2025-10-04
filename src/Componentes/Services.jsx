@@ -1,7 +1,9 @@
 export default function Services(){
     return(
         <>
-            <h1>Estamos en servicios</h1>
+            <section style={{height:"20vw"}}>
+                <p>Aun no Terminada</p>
+            </section>
         </>
     )
 }
