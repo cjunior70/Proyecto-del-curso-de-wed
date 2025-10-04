@@ -48,16 +48,23 @@ video{
     .general{
         display: flex;
         justify-content: space-around
-
     }
 
     .imagen{
         position: relative;
         left:15vw;
+        width: 30vw;
+        height: 8vw;
+        display: flex;
+    }
+
+    .imagen img{
+        width: 30vw;
+        height: 10vw;
     }
 
     .menu_de_usuario{
-         position: relative;
-        left:-10vw;
+        position: relative;
+        left:75vw;
     }
 };

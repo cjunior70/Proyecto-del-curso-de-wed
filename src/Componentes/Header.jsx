@@ -61,8 +61,8 @@ export default function Header(){
 
                 {
                     !user || (Array.isArray(user) && user.length === 0) ? (
-                        <section className="d-grid gap-2 d-md-flex justify-content-md-end w-25 h-25">
-                            <Link to="/Login" className="btn btn-outline-secondary rounded-4 border-0 text-dark">Sign up</Link> 
+                        <section className="d-grid gap-2 d-md-flex menu_de_usuario justify-content-md-end w-25 h-25">
+                            <Link to="/Login" className="btn  btn-outline-secondary rounded-4 border-0 text-dark">Sign up</Link> 
                             <Link to="/Login" className="btn btn-outline-dark rounded-4 bg-black text-white">Login In</Link>
                         </section>
                     ) : (
