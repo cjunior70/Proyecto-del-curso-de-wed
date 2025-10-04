@@ -52,7 +52,7 @@ video{
 
     .imagen{
         position: relative;
-        left:15vw;
+        left:10vw;
         width: 30vw;
         height: 8vw;
         display: flex;
@@ -65,6 +65,6 @@ video{
 
     .menu_de_usuario{
         position: relative;
-        left:75vw;
+        left:5vw;
     }
 };
