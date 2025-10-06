@@ -37,7 +37,6 @@ video{
   right: 0 !important;
 }
 
-
 /*Responsivo*/
 
 @media screen and (max-width: 1000px) {
@@ -47,7 +46,7 @@ video{
     }
 
     /* Header */
-    .barra_de_menu{
+    .desaparece{
         display: none;
     }
 
@@ -93,5 +92,56 @@ video{
     }
     .parte_1 h1{
         font-size: 30px;
+    }
+
+    .principal_grupo_2{
+        width: 100%;
+        height: 50vw;
+    }
+
+    .grupo_1_botones{
+        width: 100;
+        height: 20vw;
+    }
+
+    .grupo_3_principal{
+        display: flex;
+        justify-content: center;
+    }
+
+    .grupo_3_principal form{
+        width: 100%;
+    }
+
+    .grupo_3_principal form input{
+        font-size: 12px;
+    }
+
+    .grupo_4_principal{
+        border: 1px solid green;
+        width: 80vw;
+        height: 30vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grupo_4_principal h4{
+        border: 1px solid green;
+    }
+
+    .grupo_4_opciones {
+        width: 100%;
+        height: 70%;
+        border: 1px solid green;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .grupo_4_opciones a{
+        width: 20vw;
+        height: 5vw;
+        font-size: 10px;
+        text-align: center;
     }
 };

@@ -1,0 +1,27 @@
+.input-elegante {
+  border: 2px solid #e5e7eb; /* gris claro */
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+  color: #212529;
+}
+
+/* Hover */
+.input-elegante:hover {
+  border-color: #d1d5db;
+  background-color: #fff;
+}
+
+/* Focus */
+.input-elegante:focus {
+  border-color: #0d6efd; /* azul Bootstrap */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  background-color: #fff;
+}
+
+/* Placeholder */
+.input-elegante::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}

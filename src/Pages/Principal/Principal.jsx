@@ -72,7 +72,7 @@ export default function Principal() {
       <main>
         {/* Primera parte */}
         <section className="row d-flex align-items-center justify-content-around p-4">
-          <section className="col-6 principal_grupo_1 grupo_1 p-4" style={{border:"1px solid green"}}>
+          <section className="col-6 principal_grupo_1 grupo_1 p-4">
             <article className="parte_1 ">
               <h1>
                 Discover the <br /> World’s Top Designers
@@ -83,15 +83,15 @@ export default function Principal() {
               </p>
             </article>
 
-            <section className="parte_2">
-                <section className="row p-3 w-75 d-flex justify-content-strat">
-                    <button type="button" className={ opciones ==1 ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}}  onClick={()=> Setopciones(1) }>
-                        <img
-                            src="https://images.icon-icons.com/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png"
-                            alt=""
-                        />
-                        <p>Shots</p>
-                    </button>
+            <section className="parte_2 principal_grupo_2 w-100">
+                <section className=" grupo_1_botones p-3 w-100 d-flex justify-content-strat">
+                    <button type="button" className= { opciones ==1 ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}}  onClick={()=> Setopciones(1) }>
+                          <img
+                              src="https://images.icon-icons.com/1993/PNG/512/frame_gallery_image_images_photo_picture_pictures_icon_123209.png"
+                              alt=""
+                          />
+                          <p>Shots</p>
+                      </button>
                     <button type="button" className={ opciones ==2  ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}} onClick={()=> Setopciones(2) }>
                         <img
                             src="https://images.icon-icons.com/3256/PNG/512/group_team_people_icon_205855.png"
@@ -108,7 +108,7 @@ export default function Principal() {
                     </button>
                 </section>
                 
-                <section>
+                <section className="grupo_3_principal">
                     <form className="d-flex barra_de_busqueda p-1" role="search">
                         <input
                             className="form-control me-2 barra"
@@ -121,19 +121,19 @@ export default function Principal() {
                             }
                             aria-label="Search"
                         />
-                        <button className="boton_de_busqueda btn" type="submit">
+                        <button className="boton_de_busqueda grupo_3_principal_button btn" type="submit">
                             <img src="https://images.icon-icons.com/2469/PNG/512/magnifier_magnifying_glass_icon_149435.png" alt="" />
                         </button>
                     </form>
                 </section>
 
-                <section className="d-flex opciones justify-content-around m-2">
+                <section className="d-flex opciones grupo_4_principal justify-content-around m-2">
                   <section className="d-flex opciones_texto">
                     <h4>Popular: </h4>
                   </section>
                   {
                     opciones == 1 && 
-                    <section className=" d-flex opciones_populares justify-content-around">
+                    <section className="grupo_4_opciones d-flex opciones_populares justify-content-around">
                     <a href="">dashboard</a>
                     <a href="">landig page</a>
                     <a href="">e-commerce</a>
@@ -144,7 +144,7 @@ export default function Principal() {
 
                   {
                     opciones == 2 && 
-                    <section className=" d-flex opciones_populares justify-content-around">
+                    <section className="grupo_4_opciones d-flex opciones_populares justify-content-around">
                     <a href="">App desing</a>
                     <a href="">landing page</a>
                     <a href="">wed design</a>
@@ -154,7 +154,7 @@ export default function Principal() {
 
                   {
                     opciones == 3 && 
-                    <section className=" d-flex opciones_populares justify-content-around">
+                    <section className="grupo_4_opciones d-flex opciones_populares justify-content-around">
                     <a href="">branding</a>
                     <a href="">logo desing</a>
                     <a href="">mobile app</a>

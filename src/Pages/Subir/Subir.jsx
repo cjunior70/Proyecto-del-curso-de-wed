@@ -15,6 +15,7 @@ export default function Subir() {
   const [preview, setPreview] = useState(null);
   const [cargando, setCargando] = useState(false);
   const [Titulo,setTitulo] = useState(null);
+  const [Descripcion_de_la_coleccion,setDescripcion_de_la_coleccion] = useState(null);
   const [Continuar, setContinuar] = useState(false);
   const [Galeria,  setGaleria ] = useState(false);
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ if (error) {
           {
             Id_Usuario: Userid,   // 👈 el usuario dueño de la colección
             Titulo: Titulo,
-            Descripcion: "Colección creada automáticamente",
+            Descripcion: Descripcion_de_la_coleccion,
           },
         ])
         .select()
@@ -139,9 +140,17 @@ if (error) {
                         type="text"
                         value={Titulo}
                         onChange={(e) => setTitulo(e.target.value)}
-                        className="w-100 h-100 border border-top-0 fs-3 text"
-                        placeholder="Ingrese un titulo para la coleccion"
+                        className="w-100 h-75 input-elegante fs-3 text"
+                        placeholder="Ingrese Un Titulo Para La Coleccion"
                       />
+                      <input
+                        type="text"
+                        value={Descripcion_de_la_coleccion}
+                        onChange={(e) => setDescripcion_de_la_coleccion(e.target.value)}
+                        className="form-control input-elegante fs-5"
+                        placeholder="Ingrese Una Descripción De La Colección"
+                      />
+
                     </form>
                   </>
                 ) : (
