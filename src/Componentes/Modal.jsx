@@ -23,7 +23,8 @@ export default function Contenido_modal({ data }) {
 
             const paths = data.Galeria.map(item => {
                 const url = new URL(item.Url_Contenido);
-                return url.pathname.split("/Imagnes/")[1]; // Solo ruta relativa
+                const path = url.pathname.split("/Imagnes/")[1];
+                return decodeURIComponent(path); // ← importante
             }).filter(Boolean);
 
             if (paths.length > 0) {
@@ -33,6 +34,7 @@ export default function Contenido_modal({ data }) {
 
                 if (errorStorage) console.error("Error eliminando del storage:", errorStorage);
             }
+
 
             // 2️⃣ Eliminar registros de la galería asociados
             const { error: errorGaleria } = await Conexion
