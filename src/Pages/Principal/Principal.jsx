@@ -53,17 +53,16 @@ export default function Principal() {
           Url_Contenido,
           Id_Coleccion
         ),
-        Liked_Shots (
+        Likes (
           Id,
           Id_Usuario,
-          Id_Coleccion,
-          Like
+          Id_Coleccion
         )
       `);
 
       if (error) console.error("❌ Error:", error.message);
       else{
-          console.log("✅ Datos de Usuarios:", data);
+        // console.log("✅ Datos de Usuarios:", data);
          setGaleria(data);
       }
     } 

@@ -40,11 +40,10 @@ export default function Buscar() {
               Url_Contenido,
               Id_Coleccion
             ),
-            Liked_Shots (
+            Likes (
               Id,
               Id_Usuario,
-              Id_Coleccion,
-              Like
+              Id_Coleccion
             )
           `)
           .ilike("Titulo", `%${query}%`);

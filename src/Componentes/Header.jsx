@@ -6,7 +6,7 @@ export default function Header(){
 
     const {user,signout } = UserAuth();
 
-    console.log("datos del usaurio :  " , user)
+    // console.log("datos del usaurio :  " , user)
     
     return(
         <>

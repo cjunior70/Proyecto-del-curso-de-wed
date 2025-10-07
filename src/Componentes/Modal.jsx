@@ -12,6 +12,17 @@ export default function Contenido_modal({ data }) {
     // Estado para controlar el GIF de carga
     const [loading, setLoading] = useState(false);
 
+    const handleLike = () => {
+        // Alternar el estado
+        const nuevoEstado = Megusta === 1 ? 0 : 1;
+        SetMegusta(nuevoEstado);
+
+        // Mostrar alerta solo si el usuario da "me gusta"
+        if (nuevoEstado === 1) {
+        alert(`💖 Te ha gustado la coleccion con ID: ${item.Id}`);
+        }
+    };
+
     const handleEliminar = async () => {
         const confirmar = window.confirm(
             "¿Estás seguro que deseas eliminar esta colección? Esta acción no se puede deshacer."
@@ -63,8 +74,6 @@ export default function Contenido_modal({ data }) {
     };
 
 
-
-
     return (
         <section className="d-flex align-items-start w-100 justify-content-center">
             {/* Parte izquierda con título, usuario e imágenes */}
@@ -96,7 +105,7 @@ export default function Contenido_modal({ data }) {
                         {/* ❤️ Like */}
                         <button
                             className="rounded-5 bg-white border-0 d-flex justify-content-center align-items-center"
-                            onClick={() => SetMegusta(Megusta === 1 ? 0 : 1)}
+                            onClick={handleLike}
                             style={{ width: "50px", height: "40px" }}
                         >
                             <svg

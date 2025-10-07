@@ -22,15 +22,24 @@ export const AutenContextProvider = ({children}) =>{
     }
 
     async function signout() {
-        const {error}  = await supabase.auth.signOut();
-        if(error) throw new Error("A ocurrio un error durante el cierre de sesion");
+        try {
+          // 🔹 Cierra la sesión en Supabase
+          const { error } = await supabase.auth.signOut();
+
+          if (error) throw error;
+
+          alert("👋 Sesión cerrada correctamente");
+        } catch (err) {
+          console.error("❌ Error durante el cierre de sesión:", err.message);
+          alert("Ocurrió un error durante el cierre de sesión");
+        }
     }
 
     useEffect(()=> {
       const { data: autenticacion } = supabase.auth.onAuthStateChange(async (event,session)=>{
           setUser(session?.user.user_metadata);
           insertarUsuario(session?.user.user_metadata, setUserID);
-          console.log("prueba del usuario : " , session?.user.user_metadata);
+          // console.log("prueba del usuario : " , session?.user.user_metadata);
           const idUsuario = localStorage.getItem("Id_Usuario");
           setUserID(idUsuario);
 
@@ -71,7 +80,7 @@ async function insertarUsuario(user,setUserID) {
   }
 
   if (usuarioExistente) {
-    console.log("⚠️ El usuario ya existe:", usuarioExistente);
+    // console.log("⚠️ El usuario ya existe:", usuarioExistente);
 
     setUserID(usuarioExistente.Id);
     
