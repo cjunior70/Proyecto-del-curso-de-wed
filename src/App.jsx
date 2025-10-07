@@ -14,6 +14,7 @@ import Liked from "./Componentes/Liked.jsx";
 import About from "./Componentes/About.jsx";
 import Subir from "./Pages/Subir/Subir.jsx";
 import Editar from "./Pages/Editar/Editar.jsx";
+import Buscar from "./Pages/Buscar/Buscar.jsx";
 
 // Layout controla Header/Footer
 function Layout() {
@@ -31,6 +32,7 @@ function Layout() {
         <Routes>
           <Route path="/" element={<Principal />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Buscar" element={<Buscar/>} />
           <Route path="/Cuenta/" element={<Cuenta />} >
             <Route path="Work/" element={<Work />} />
             <Route path="Services" element={<Services/>} />

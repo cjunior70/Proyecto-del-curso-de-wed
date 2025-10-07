@@ -28,9 +28,13 @@ export default function Subir() {
 
   setCargando(true); // inicia loader
 
+  const nombreSeguro = archivo.name
+  .replace(/\s+/g, "_")       // reemplaza espacios por guiones bajos
+  .replace(/[^a-zA-Z0-9_.-]/g, ""); //
+  
   const { data, error } = await Conexion.storage
   .from("Imagnes")
-  .upload(`/${archivo.name}`, archivo, {
+  .upload(`/${nombreSeguro}`, archivo, {
     cacheControl: "3600",
     upsert: false
   });
@@ -63,9 +67,9 @@ if (error) {
       return;
     }
 
-    console.log("✅ Colección creada:", coleccionData);
+    // console.log("✅ Colección creada:", coleccionData);
 
-    console.log("id de la colecion : " + coleccionData.Id);
+    // console.log("id de la colecion : " + coleccionData.Id);
 
     // 2️⃣ Guardar el archivo en la galería asociado a esa colección
     const { data: galeriaData, error: galeriaError } = await Conexion
@@ -97,13 +101,29 @@ if (error) {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  // Crear un objeto de imagen temporal para medir ancho y alto
+  const img = new Image();
+  img.src = URL.createObjectURL(file);
+
+  img.onload = () => {
+    // Validar tamaño mínimo
+    if (img.width < 1600) {
+      alert(`⚠️ La imagen tiene solo ${img.width}px de ancho. Debe ser al menos 1600px.`);
+      setArchivo(null);
+      setPreview(null);
+      fileInputRef.current.value = ""; // limpia el input
+    } else {
+      // ✅ Imagen válida
       setArchivo(file);
-      setPreview(URL.createObjectURL(file)); // 👈 creamos vista previa
+      setPreview(img.src);
+      //alert(`✅ Imagen válida (${img.width}px de ancho).`);
     }
   };
+};
 
   return (
     <>

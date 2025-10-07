@@ -4,6 +4,7 @@ import Cartas from "../../Componentes/Cartas";
 import Contenido_modal from "../../Componentes/Modal";
 import  Conexion  from "../../Superbase/Conexion";
 import { UserAuth } from "../../Superbase/AutenContex";
+import { useNavigate } from "react-router-dom";
 
 export default function Principal() {
 
@@ -14,7 +15,13 @@ export default function Principal() {
   const [Filtro, setFiltro] = useState(false);
   const [Id_Carta, SetId_Carta] = useState(null);
 
-  
+    //Estado de las opciones para poder saber el estado de las opciones
+  const [opciones,Setopciones] = useState(1);
+
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  // Bloquear scroll al abrir modal (igual que en Principal)
   useEffect(() => {
     if (Id_Carta !== null) {
       document.body.classList.add("modal-open");
@@ -64,8 +71,12 @@ export default function Principal() {
     getGaleria();
   }, [] )
 
-  //Estado de las opciones para poder saber el estado de las opciones
-  const [opciones,Setopciones] = useState(1);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim() !== "") {
+      navigate(`/Buscar?q=${encodeURIComponent(query)}`);
+    }
+  };
 
   return (
     <> 
@@ -109,18 +120,20 @@ export default function Principal() {
                 </section>
                 
                 <section className="grupo_3_principal">
-                    <form className="d-flex barra_de_busqueda p-1" role="search">
-                        <input
-                            className="form-control me-2 barra"
-                            type="search"
-                            placeholder={
-                              opciones == 1 ? "what type od desing are you interested in ¿?"
-                              : opciones == 2 ? "What type of desingner do you need ¿?"
-                              : opciones == 3 ? "What do you need desingned ¿?"
-                              : "Default placeholder"
-                            }
-                            aria-label="Search"
-                        />
+                    <form className="d-flex barra_de_busqueda p-1" role="search" onSubmit={handleSearch}>
+                          <input
+                              className="form-control me-2 barra"
+                              type="search"
+                              value={query}
+                              onChange={(e) => setQuery(e.target.value)}
+                              placeholder={
+                                opciones == 1 ? "what type od desing are you interested in ¿?"
+                                : opciones == 2 ? "What type of desingner do you need ¿?"
+                                : opciones == 3 ? "What do you need desingned ¿?"
+                                : "Default placeholder"
+                              }
+                              aria-label="Search"
+                          />
                         <button className="boton_de_busqueda grupo_3_principal_button btn" type="submit">
                             <img src="https://images.icon-icons.com/2469/PNG/512/magnifier_magnifying_glass_icon_149435.png" alt="" />
                         </button>
