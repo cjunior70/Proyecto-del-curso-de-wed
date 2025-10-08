@@ -9,11 +9,13 @@ export default function Cartas({ item, SetId_Carta }) {
   const { Userid } = UserAuth();
   const navigate = useNavigate();
 
+  // console.log(JSON.stringify(item, null, 2));
+
+  // console.log("esto son los imtes :  " + item.Likes[0].Id);
+
   const handleLike = async () => {
     const nuevoEstado = !Megusta; // ← alternamos entre true y false
     SetMegusta(nuevoEstado);
-
-    alert("Este es id ide :" + Userid);
 
     // 👇 si no hay usuario, muestra alerta y redirige
     if (!Userid) {
@@ -39,7 +41,7 @@ export default function Cartas({ item, SetId_Carta }) {
         if (error) {
           console.error("❌ Error insertando like:", error);
         } else {
-          alert(`💖 Te ha gustado la colección con ID: ${item.Id}`);
+          // alert(`💖 Te ha gustado la colección con ID: ${item.Id}`);
           setLikeId(data.Id);
         }
       } catch (err) {

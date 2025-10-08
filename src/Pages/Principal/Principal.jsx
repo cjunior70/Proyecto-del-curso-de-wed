@@ -62,7 +62,7 @@ export default function Principal() {
 
       if (error) console.error("❌ Error:", error.message);
       else{
-        // console.log("✅ Datos de Usuarios:", data);
+         console.log("✅ Datos de Usuarios:", data);
          setGaleria(data);
       }
     } 
