@@ -79,10 +79,10 @@ export default function Principal() {
 
   return (
     <> 
-      <main>
+      <main className="row">
         {/* Primera parte */}
-        <section className="row d-flex align-items-center justify-content-around p-4">
-          <section className="col-6 principal_grupo_1 grupo_1 p-4">
+        <section className="row d-flex align-items-center  justify-content-around p-4">
+          <section className="col-6 grupo_1 p-4">
             <article className="parte_1 ">
               <h1>
                 Discover the <br /> World’s Top Designers
@@ -93,7 +93,7 @@ export default function Principal() {
               </p>
             </article>
 
-            <section className="parte_2 principal_grupo_2 w-100">
+            <section className="parte_2 w-100">
                 <section className=" grupo_1_botones p-3 w-100 d-flex justify-content-strat">
                     <button type="button" className= { opciones ==1 ? "btn col-2 btn-secondary " : "btn col-2 " } style={{width:"8vw"}}  onClick={()=> Setopciones(1) }>
                           <img

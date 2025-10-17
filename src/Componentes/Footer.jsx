@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 export default function Footer() {
   return (
     <>
-      <section style={{position:"relative", top:"1vw"}}>
+      <section style={{position:"relative", top:"1vw", width:"100%"}}>
         <section className="d-flex row d-flex justify-content-evenly align-items-center" style={{position:"relative", top:"1vw"}}>
           <figure className="logo col-1">
             <img src={logo} alt="" />

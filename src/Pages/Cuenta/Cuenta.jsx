@@ -31,7 +31,7 @@ export default function Cuenta(){
                         </section>
                     </section>
                     <section className="d-flex justify-content-around" style={{width:"40%"}}>
-                        <button className="btn btn-light"  >Edit Profile</button>
+                        <Link className="btn btn-light" to={"/Account"}>Edit Profile</Link>
                         <button className="btn btn-dark ">Upgrade to Pro</button>
                         <button className="btn btn-light">...</button>
                         <button className="btn btn-info ">Limited Account</button>

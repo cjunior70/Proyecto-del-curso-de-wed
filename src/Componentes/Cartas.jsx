@@ -17,7 +17,7 @@ export default function Cartas({ item, SetId_Carta }) {
     const nuevoEstado = !Megusta; // ← alternamos entre true y false
     SetMegusta(nuevoEstado);
 
-    // 👇 si no hay usuario, muestra alerta y redirige
+    // si no hay usuario, muestra alerta y redirige
     if (!Userid) {
       alert("⚠️ Para usar esta opción debes iniciar sesión o registrarte.");
       navigate("/Login"); // 👈 redirige a la ruta de login
@@ -69,7 +69,7 @@ export default function Cartas({ item, SetId_Carta }) {
   };
 
   return (
-    <div className="card rounded-3 m-1 h-100" style={{ border: "1px solid #ccc" }}>
+    <section className="card rounded-3 m-1 h-100" style={{ border: "1px solid #ccc" }}>
       <section
         className="h-75"
         data-bs-toggle="modal"
@@ -84,7 +84,7 @@ export default function Cartas({ item, SetId_Carta }) {
         />
       </section>
 
-      <div className="card-body h-25 w-100 d-flex justify-content-between align-items-center">
+      <section className="card-body h-25 w-100 d-flex justify-content-between align-items-center">
         <section className="d-flex w-50 align-items-center justify-content-evenly">
           <img
             style={{ width: 30, height: 30 }}
@@ -96,7 +96,7 @@ export default function Cartas({ item, SetId_Carta }) {
                 "https://images.icon-icons.com/1539/PNG/512/3289576-individual-man-people-person_107097.png";
             }}
           />
-          <p style={{ width: "10vw", height: "2vw" }}>{item.Usuarios?.Nombre}</p>
+          <p style={{ width: "10vw", height: "2vw", overflow: "hidden" }}>{item.Usuarios?.Nombre}</p>
         </section>
 
         <section className="d-flex w-50">
@@ -111,7 +111,7 @@ export default function Cartas({ item, SetId_Carta }) {
                 width="2vw"
                 height="2vw"
                 viewBox="5 -5 20 30"
-                fill={Megusta ? "#ea4c89" : "none"} // ← ahora usamos boolean
+                fill={Megusta ? "#ea4c89" : "none"} // ← aqui usamos boolean
                 stroke="black"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -139,7 +139,7 @@ export default function Cartas({ item, SetId_Carta }) {
             <p style={{ position: "relative", top: "0.5vw", left: "1.3vw" }}>20k</p>
           </section>
         </section>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }

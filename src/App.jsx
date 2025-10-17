@@ -15,6 +15,7 @@ import About from "./Componentes/About.jsx";
 import Subir from "./Pages/Subir/Subir.jsx";
 import Editar from "./Pages/Editar/Editar.jsx";
 import Buscar from "./Pages/Buscar/Buscar.jsx";
+import Account from "./Pages/Account/Account.jsx";
 
 // Layout controla Header/Footer
 function Layout() {
@@ -40,6 +41,20 @@ function Layout() {
             <Route path="Collections" element={<Collections/>} />
             <Route path="Liked" element={<Liked/>} />
             <Route path="About" element={<About/>} />
+          </Route>
+          <Route path="/Account/" element={<Account />}>
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
+            <Route path="Work/" element={<Work />} />
           </Route>
           <Route path="/Editar" element={<Editar/>}/>
           <Route path="/Subir" element={ <Subir></Subir> } ></Route>

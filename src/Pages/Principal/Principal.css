@@ -14,12 +14,6 @@
   display: block;
 }
 
-
-.grupo_1{
-    width: 48vw;
-    height: 24vw;
-}
-
 h1{
     font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 48px;
@@ -29,10 +23,6 @@ h1{
 .grupo_1 .parte_2 img{
     width: 1.7vw;
     height: 1.7vw;
-}
-
-.grupo_2{
-    width: 48vw;
 }
 
 .grupo_1 .parte_2 button{

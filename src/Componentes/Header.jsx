@@ -10,12 +10,12 @@ export default function Header(){
     
     return(
         <>
-            <section className="d-flex justify-content-between general m-2 align-items-center">
-                <section className="w-50 d-flex justify-content-between p-1 ">
-                    <figure className="logo col-1 w-25 imagen">
+            <section className="d-flex justify-content-between general m-2 align-items-center w-100 text-center row" >
+                <section className="col-7 d-flex justify-content-between p-1 row">
+                    <figure className="logo col-3 imagen">
                         <Link to={"/"}><img src={logo} alt=""/></Link>
                     </figure>
-                    <section className="d-flex justify-content-around desaparece  w-75 align-items-center">
+                    <section className="d-flex col-9 justify-content-around desaparece align-items-center">
                         <section className="dropdown desaparece">
                             <a href="" className="dropdown-text">Menu &#9662; </a>
                             <ul className="dropdown-menu desaparece">
@@ -61,14 +61,13 @@ export default function Header(){
 
                 {
                     !user || (Array.isArray(user) && user.length === 0) ? (
-                        <section className="d-grid gap-2 d-md-flex menu_de_usuario justify-content-md-end w-25 h-25">
+                        <section className="d-grid gap-2 d-md-flex menu_de_usuario justify-content-md-end col-5 h-25">
                             <Link to="/Login" className="btn  btn-outline-secondary rounded-4 border-0 text-dark">Sign up</Link> 
                             <Link to="/Login" className="btn btn-outline-dark rounded-4 bg-black text-white">Login In</Link>
                         </section>
                     ) : (
                         <section 
-                            className="d-flex align-items-center justify-content-between "  
-                            style={{ width: "35%"}}
+                            className="d-flex align-items-center justify-content-between col-5 " 
                             >
                             {/* Botones */}
                             <section 
