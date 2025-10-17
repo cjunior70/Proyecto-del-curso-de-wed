@@ -9,9 +9,9 @@ export default function Cartas({ item, SetId_Carta }) {
   const { Userid } = UserAuth();
   const navigate = useNavigate();
 
-  // console.log(JSON.stringify(item, null, 2));
+   console.log(JSON.stringify(item, null, 2));
 
-  // console.log("esto son los imtes :  " + item.Likes[0].Id);
+   console.log("esto son los imtes :  " + item.Likes[0].Id);
 
   const handleLike = async () => {
     const nuevoEstado = !Megusta; // ← alternamos entre true y false
@@ -96,7 +96,9 @@ export default function Cartas({ item, SetId_Carta }) {
                 "https://images.icon-icons.com/1539/PNG/512/3289576-individual-man-people-person_107097.png";
             }}
           />
-          <p style={{ width: "10vw", height: "2vw", overflow: "hidden" }}>{item.Usuarios?.Nombre}</p>
+          <p style={{ width: "10vw", height: "2vw" }}>{item.Usuarios?.Nombre}</p>
+          <p style={{ width: "10vw", height: "2vw" }}>{item.Usuarios?.Nombre}</p>
+          <p>{item.Usuarios?.created_at}</p>
         </section>
 
         <section className="d-flex w-50">

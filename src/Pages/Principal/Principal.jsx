@@ -42,6 +42,7 @@ export default function Principal() {
         Id_Usuario,
         Titulo,
         Descripcion,
+        Fecha,
         Usuarios: Coleccion_Id_Usuario_fkey (
           Id,
           Nombre,
